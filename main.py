@@ -30,24 +30,7 @@ for i in range(2,mr+1):
     chitiet["B5"] = soxe
     chitiet["B7"] = shipment
     workbook.save(add1)
-    # like the doc says, provide API key in header
-    API_KEY = '.... your API key ....'
-    username = 'ctynguyenngoc'
-    password = 'sEj1oRXN0tLOgYJPvRMH'
 
-    session = requests.Session()
-    # these are sent along for all requests
-    session.headers['X-IG-API-KEY'] = 'af73b810-28d8-4558-9600-02f368221e56'
-    # not strictly needed, but the documentation recommends it.
-    session.headers['Accept'] = "application/json; charset=UTF-8"
-
-    # log in first, to get the tokens
-    response = session.post(
-        url + '/session',
-        json={'identifier': username, 'password': password},
-        headers={'VERSION': '2'},
-    )
-    print(response)
 
 
 
