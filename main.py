@@ -2,8 +2,9 @@ import pyautogui
 from openpyxl import load_workbook
 from selenium import webdriver
 from webdrivermanager import ChromeDriverManager
-import requests
-import json
+import pygetwindow as gw
+import os
+import time
 #dia chi lich su hanh trinh cua dinh vi
 url = 'http://api.eup.net.vn:8000/ctynguyenngoc/history'
 #dia chi file chi tiet (ghi tat add1)
@@ -24,31 +25,26 @@ def lammoi():
 #dem so dong o sheet data
 mr = datasheet.max_row
 #bat dau tung dong cua file data
-for i in range(2,mr+1):
+for i in range(2,3):
     soxe = datasheet.cell(i,2).value
     shipment = datasheet.cell(i,1).value
     chitiet["B5"] = soxe
     chitiet["B7"] = shipment
     workbook.save(add1)
-    # like the doc says, provide API key in header
-    API_KEY = '.... your API key ....'
-    username = 'ctynguyenngoc'
-    password = 'sEj1oRXN0tLOgYJPvRMH'
-
-    session = requests.Session()
-    # these are sent along for all requests
-    session.headers['X-IG-API-KEY'] = 'af73b810-28d8-4558-9600-02f368221e56'
-    # not strictly needed, but the documentation recommends it.
-    session.headers['Accept'] = "application/json; charset=UTF-8"
-
-    # log in first, to get the tokens
-    response = session.post(
-        url + '/session',
-        json={'identifier': username, 'password': password},
-        headers={'VERSION': '2'},
-    )
-    print(response)
-
-
-
-
+    a = gw.getWindowsWithTitle('19136 - CÔNG TY CỔ PHẦN NGUYỄN NGỌC LOGISTICS - v1.0.15.217 - Google Chrome')[0]
+    a.activate()
+    pyautogui.moveTo(1234,202)
+    pyautogui.leftClick()
+    pyautogui.write(soxe)
+    pyautogui.moveTo(1186, 264)
+    pyautogui.leftClick()
+    pyautogui.moveTo(1114, 354)
+    pyautogui.leftClick()
+    pyautogui.moveTo(1343, 438, duration =1)
+    pyautogui.leftClick()
+    pyautogui.moveTo(1250, 260, duration= 2)
+    pyautogui.scroll(-300)
+    pyautogui.moveTo(1121, 367, duration=1)
+    pyautogui.leftClick()
+    pyautogui.moveTo(94, 693, duration=1)
+    pyautogui.leftClick()
